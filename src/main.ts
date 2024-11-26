@@ -1,5 +1,9 @@
 import { toDataURL } from "qrcode"
-
+const config = {
+  iceServers: [
+      { urls: 'stun:stun.l.google.com:19302' }
+  ]
+};
 async function generateQRCode(id: string): Promise<void> {
   try {
     const url = new URL("?id=" + id, window.location.href);
@@ -21,7 +25,7 @@ function getQueryParam(param: string): string | null {
 
 async function main() {
   const id = getQueryParam('id')
-  const peerConnection = new RTCPeerConnection();
+  const peerConnection = new RTCPeerConnection(config);
   if (!id) {
     const newID = Math.random().toString(36).substr(2, 9);
     await generateQRCode(newID);
