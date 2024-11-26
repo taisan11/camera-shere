@@ -39,7 +39,7 @@ async function main() {
       document.body.appendChild(receivedDataContainer);
     };
   } else {
-    const dataChannel = peerConnection.createDataChannel('camera-share');
+    const dataChannel = peerConnection.createDataChannel('camera-share'+id);
 
     dataChannel.onopen = () => {
       console.log('Data channel is open');
